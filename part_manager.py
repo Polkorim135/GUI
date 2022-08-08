@@ -1,8 +1,14 @@
+from ast import Str
+from multiprocessing.synchronize import Lock
+from sqlite3 import Row
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+from turtle import bgcolor, color
+from tkcalendar import *
 import tkinter
 
+from tkcalendar import Calendar
 
 
 
@@ -15,6 +21,10 @@ part_label = Label(app, text='Port', font=('bold', 11), pady=20,)
 part_label.grid(row=0, column=0, sticky= W)
 part_entry= Entry(app, textvariable=part_text)
 part_entry.grid(row=0,column=10)
+
+def test_func():
+    print("CLICk")
+
 
 # Baudrate
 course=["300","600","1200","2400","4800","9600","19200","36800"]
@@ -77,7 +87,7 @@ password_entry.grid(row=4,column=30)
 course=["HDLC", "HDLC_MODE_E", "WRAPPER"]
 l1=Label(app, text="Interface Protocol", font=("bold", 11), pady=20)
 l1.grid(row=5, column=0, sticky=W)
-cmb=ttk.Combobox(app,value=course,width=15)
+cmb=ttk.Combobox(app,value=course,width=15, postcommand=test_func)
 cmb.grid(row=5, column=10)
 cmb.current(1)
 
@@ -95,17 +105,28 @@ xslx_label.grid(row=7,column=15)
 xslx_entry= Entry(app, textvariable=xslx_text)
 xslx_entry.grid(row=8, column=15)
 
-# DateTime From
+# Date From
+cal_text = StringVar()
+cal_label= Label(app, text='Date From', font=('bold', 11), pady=20)
+cal_label.grid(row=0, column= 70, sticky=W)
+cal=DateEntry(app,selectmode='d/m/yy')
+cal.grid(row=0,column=71)
 
-# DateTime To
+# Date To
 
+cal_text = StringVar()
+cal_label= Label(app, text='Date to', font=('bold', 11), pady=20)
+cal_label.grid(row=0, column= 72, sticky=W)
+cal=DateEntry(app,selectmode='d/m/yy', sticky=W)
+cal.grid(row=0,column=73)
 
+#trace
 
-
-
-
-
-
+trace_text=  StringVar()
+trace_label= Label(app,text='Trace', font=('bold', 11), pady=20)
+trace_label.grid(row=4, column=70, sticky=W) 
+trace_entry= Entry(state='readonly', background='white')
+trace_entry.grid(row=4, column=71, columnspan=5, padx=45, pady=20, ipadx=200, ipady=140, )
 
 app.title('Zatial to je jedno')
 app.geometry('1650x625')
